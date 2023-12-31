@@ -1,0 +1,30 @@
+{# templates/roster/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Roster{% endblock %}
+
+{% block body %}
+    <h1>Roster</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Server</th>
+                <!-- Add headers for other columns -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in rosterMembers %}
+                <tr>
+                    <td>{{ member.getMemberId() }}</td>
+                    <td>{{ member.getCharacterName() }}</td>
+                    <td>{{ member.getServer() }}</td>
+                    <!-- Add cells for other properties -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
