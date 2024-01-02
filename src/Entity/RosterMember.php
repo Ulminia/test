@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: RosterMemberRepository::class)]
-#[ORM\Table(name: 'roster_members')]
+#[ORM\Table(name: 'roster_member')]
 #[Broadcast]
 
 /**
@@ -120,7 +120,7 @@ class RosterMember
      * @ORM\Column(type="integer")
      */
 	#[ORM\Column]
-    private ?int $rank = null;
+    private ?int $guild_rank = null;
 
     /**
      * @ORM\Column(type="string", length=64, name="rank_title", nullable=true)
@@ -244,9 +244,9 @@ class RosterMember
         return $this->race;
     }
 
-    public function getRank(): ?int
+    public function getGuildRank(): ?int
     {
-        return $this->rank;
+        return $this->guild_rank;
     }
 
     public function getRankTitle(): ?string
@@ -296,7 +296,7 @@ class RosterMember
             'characterPlayableRaceKeyHref' => $this->characterPlayableRaceKeyHref,
             'characterPlayableRaceId' => $this->characterPlayableRaceId,
             'race' => $this->race,
-            'rank' => $this->rank,
+            'guild_rank' => $this->guildRank,
             'rankTitle' => $this->rankTitle,
             'lastOnline' => $this->lastOnline,
             'lastHttpCode' => $this->lastHttpCode,

@@ -14,7 +14,7 @@ class Player
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $character_id = null;
+    private ?int $member_id = null;
 
     #[ORM\Column(length: 5)]
     private ?string $region = null;
