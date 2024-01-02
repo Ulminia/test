@@ -7,6 +7,8 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ajardin/blizzard-sdk-bundle": "^1.1",
+        "depotwarehouse/oauth2-bnet": "^5.0",
         "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/orm": "^2.17",
@@ -90,7 +92,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "7.0.*",
             "docker": true
         }

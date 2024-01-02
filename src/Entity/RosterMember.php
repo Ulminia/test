@@ -23,11 +23,13 @@ class RosterMember
     /**
      * @ORM\Column(type="integer", name="guild_id")
      */
+	#[ORM\Column]
     private ?int $guildId = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_key_href")
      */
+	#[ORM\Column]
     private ?string $characterKeyHref = null;
 
     /**
@@ -37,13 +39,9 @@ class RosterMember
     private ?string $character_name = null;
 
     /**
-     * @ORM\Column(type="string", length=75, name="charactername")
-     */
-    private ?string $charactername = null;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
+	#[ORM\Column]
     private ?string $name = null;
 
     /**
@@ -55,86 +53,103 @@ class RosterMember
     /**
      * @ORM\Column(type="integer", name="character_id")
      */
+	#[ORM\Column]
     private ?int $characterId = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_realm_key_href")
      */
+	#[ORM\Column]
     private ?string $characterRealmKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_realm_id")
      */
+	#[ORM\Column]
     private ?int $characterRealmId = null;
 
     /**
      * @ORM\Column(type="string", length=100, name="character_realm_slug")
      */
+	#[ORM\Column]
     private ?string $characterRealmSlug = null;
 
     /**
      * @ORM\Column(type="integer", name="character_level")
      */
+	#[ORM\Column]
     private ?int $characterLevel = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_playable_class_key_href")
      */
+	#[ORM\Column]
     private ?string $characterPlayableClassKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_playable_class_id")
      */
+	#[ORM\Column]
     private ?int $characterPlayableClassId = null;
 
     /**
      * @ORM\Column(type="string", length=32)
      */
+	#[ORM\Column]
     private ?string $class = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_playable_race_key_href")
      */
+	#[ORM\Column]
     private ?string $characterPlayableRaceKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_playable_race_id")
      */
+	#[ORM\Column]
     private ?int $characterPlayableRaceId = null;
 
     /**
      * @ORM\Column(type="string", length=32)
      */
+	#[ORM\Column]
     private ?string $race = null;
 
     /**
      * @ORM\Column(type="integer")
      */
+	#[ORM\Column]
     private ?int $rank = null;
 
     /**
      * @ORM\Column(type="string", length=64, name="rank_title", nullable=true)
      */
+	#[ORM\Column]
     private ?string $rankTitle = null;
 
     /**
      * @ORM\Column(type="integer", name="last_online")
      */
+	#[ORM\Column]
     private ?int $lastOnline = null;
 
     /**
      * @ORM\Column(type="integer", name="last_http_code", nullable=true)
      */
+	#[ORM\Column]
     private ?int $lastHttpCode = null;
 
     /**
      * @ORM\Column(type="integer")
      */
+	#[ORM\Column]
     private ?int $active = null;
 
     /**
      * @ORM\Column(type="integer", name="account_id", nullable=true)
      */
+	#[ORM\Column]
     private ?int $accountId = null;
 
     // Getter methods

@@ -1,4 +1,16 @@
 {
+    "ajardin/blizzard-sdk-bundle": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "f45b27719b9bb9b7fbee863d202bd011b36fe8c3"
+        },
+        "files": [
+            "./config/packages/ajardin_blizzard_sdk_bundle.yaml"
+        ]
+    },
     "doctrine/doctrine-bundle": {
         "version": "2.11",
         "recipe": {

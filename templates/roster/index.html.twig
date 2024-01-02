@@ -13,6 +13,7 @@
                 <th>Member ID</th>
                 <th>Name</th>
                 <th>Server</th>
+                <th>Class</th>
                 <!-- Add headers for other columns -->
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                     <td>{{ member.getMemberId() }}</td>
                     <td>{{ member.getCharacterName() }}</td>
                     <td>{{ member.getServer() }}</td>
+                    <td>{{ member.getClass() }}</td>
                     <!-- Add cells for other properties -->
                 </tr>
             {% endfor %}
