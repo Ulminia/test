@@ -120,7 +120,7 @@ class RosterMember
      * @ORM\Column(type="integer")
      */
 	#[ORM\Column]
-    private ?int $guild_rank = null;
+    private ?int $guildRank = null;
 
     /**
      * @ORM\Column(type="string", length=64, name="rank_title", nullable=true)
@@ -246,7 +246,7 @@ class RosterMember
 
     public function getGuildRank(): ?int
     {
-        return $this->guild_rank;
+        return $this->guildRank;
     }
 
     public function getRankTitle(): ?string

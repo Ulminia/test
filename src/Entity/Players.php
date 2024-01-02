@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\PlayerRepository;
+use App\Repository\PlayersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PlayerRepository::class)]
-class Player
+#[ORM\Entity(repositoryClass: PlayersRepository::class)]
+class Players
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'player', targetEntity: RosterMembers::class)]
+    #[ORM\JoinColumn(referencedColumnName:"member_id",name:"member_id")]
     #[ORM\Column]
     private ?int $member_id = null;
 
@@ -136,12 +138,21 @@ class Player
     #[ORM\Column(nullable: true)]
     private ?int $active_spec_id = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
-    private ?string $health = null;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getCharacterId(): ?RosterMembers
+    {
+        return $this->member_id;
+    }
+
+    public function setCharacterId(?RosterMembers $member_id): static
+    {
+        $this->member_id = $member_id;
+
+        return $this;
     }
 
     public function getRegion(): ?string
@@ -620,18 +631,6 @@ class Player
     public function setActiveSpecId(?int $active_spec_id): static
     {
         $this->active_spec_id = $active_spec_id;
-
-        return $this;
-    }
-
-    public function getHealth(): ?string
-    {
-        return $this->health;
-    }
-
-    public function setHealth(?string $health): static
-    {
-        $this->health = $health;
 
         return $this;
     }
