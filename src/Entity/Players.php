@@ -13,9 +13,10 @@ class Players
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'player', targetEntity: RosterMembers::class)]
-    #[ORM\JoinColumn(referencedColumnName:"member_id",name:"member_id")]
     #[ORM\Column]
+    #[ORM\JoinTable(name: 'roster_member')]
+    #[ORM\ManyToOne(inversedBy: 'players', targetEntity: RosterMember::class)]
+    #[ORM\JoinColumn(referencedColumnName:"member_id",name:"member_id")]
     private ?int $member_id = null;
 
     #[ORM\Column(length: 5)]

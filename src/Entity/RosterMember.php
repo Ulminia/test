@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RosterMemberRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
 
@@ -20,17 +22,32 @@ class RosterMember
     #[ORM\Column]
     private ?int $member_id = null;
 
+    #[ORM\JoinTable(name: 'players')]
+    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
+    #[ORM\InverseJoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
+    #[ORM\ManyToOne(targetEntity: Players::class)]
+    private Collection $player;
+
+    public function __construct()
+    {
+        $this->player = new ArrayCollection();
+    }
+
+    public function getplayer(): Collection
+    {
+        return $this->player;
+    }
     /**
      * @ORM\Column(type="integer", name="guild_id")
      */
 	#[ORM\Column]
-    private ?int $guildId = null;
+      	private ?int $guildId = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_key_href")
      */
 	#[ORM\Column]
-    private ?string $characterKeyHref = null;
+      	private ?string $characterKeyHref = null;
 
     /**
      * @ORM\Column(type="string", length=75, name="character_name")
@@ -42,7 +59,7 @@ class RosterMember
      * @ORM\Column(type="string", length=50)
      */
 	#[ORM\Column]
-    private ?string $name = null;
+      	private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=75)
@@ -54,103 +71,103 @@ class RosterMember
      * @ORM\Column(type="integer", name="character_id")
      */
 	#[ORM\Column]
-    private ?int $characterId = null;
+      	private ?int $characterId = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_realm_key_href")
      */
 	#[ORM\Column]
-    private ?string $characterRealmKeyHref = null;
+      	private ?string $characterRealmKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_realm_id")
      */
 	#[ORM\Column]
-    private ?int $characterRealmId = null;
+      	private ?int $characterRealmId = null;
 
     /**
      * @ORM\Column(type="string", length=100, name="character_realm_slug")
      */
 	#[ORM\Column]
-    private ?string $characterRealmSlug = null;
+      	private ?string $characterRealmSlug = null;
 
     /**
      * @ORM\Column(type="integer", name="character_level")
      */
 	#[ORM\Column]
-    private ?int $characterLevel = null;
+      	private ?int $characterLevel = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_playable_class_key_href")
      */
 	#[ORM\Column]
-    private ?string $characterPlayableClassKeyHref = null;
+      	private ?string $characterPlayableClassKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_playable_class_id")
      */
 	#[ORM\Column]
-    private ?int $characterPlayableClassId = null;
+      	private ?int $characterPlayableClassId = null;
 
     /**
      * @ORM\Column(type="string", length=32)
      */
 	#[ORM\Column]
-    private ?string $class = null;
+      	private ?string $class = null;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_playable_race_key_href")
      */
 	#[ORM\Column]
-    private ?string $characterPlayableRaceKeyHref = null;
+      	private ?string $characterPlayableRaceKeyHref = null;
 
     /**
      * @ORM\Column(type="integer", name="character_playable_race_id")
      */
 	#[ORM\Column]
-    private ?int $characterPlayableRaceId = null;
+      	private ?int $characterPlayableRaceId = null;
 
     /**
      * @ORM\Column(type="string", length=32)
      */
 	#[ORM\Column]
-    private ?string $race = null;
+      	private ?string $race = null;
 
     /**
      * @ORM\Column(type="integer")
      */
 	#[ORM\Column]
-    private ?int $guildRank = null;
+      	private ?int $guildRank = null;
 
     /**
      * @ORM\Column(type="string", length=64, name="rank_title", nullable=true)
      */
 	#[ORM\Column]
-    private ?string $rankTitle = null;
+      	private ?string $rankTitle = null;
 
     /**
      * @ORM\Column(type="integer", name="last_online")
      */
 	#[ORM\Column]
-    private ?int $lastOnline = null;
+      	private ?int $lastOnline = null;
 
     /**
      * @ORM\Column(type="integer", name="last_http_code", nullable=true)
      */
 	#[ORM\Column]
-    private ?int $lastHttpCode = null;
+      	private ?int $lastHttpCode = null;
 
     /**
      * @ORM\Column(type="integer")
      */
 	#[ORM\Column]
-    private ?int $active = null;
+      	private ?int $active = null;
 
-    /**
-     * @ORM\Column(type="integer", name="account_id", nullable=true)
-     */
-	#[ORM\Column]
-    private ?int $accountId = null;
+    #[ORM\Column(length: 4)]
+    private ?string $region = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $account_id = null;
 
     // Getter methods
 
@@ -268,11 +285,12 @@ class RosterMember
     {
         return $this->active;
     }
-
+/*
     public function getAccountId(): ?int
     {
         return $this->accountId;
     }
+    */
 
     // Method to get all data as an array (for looping in the page)
 
@@ -301,8 +319,34 @@ class RosterMember
             'lastOnline' => $this->lastOnline,
             'lastHttpCode' => $this->lastHttpCode,
             'active' => $this->active,
-            'accountId' => $this->accountId,
+            //'accountId' => $this->accountId,
         ];
+    }
+
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+
+    public function setRegion(string $region): static
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+    /**
+     * @return Collection<int, Player>
+     */
+    public function getPlayerId(): Collection
+    {
+        return $this->player;
+    }
+
+    public function setAccountId(?int $account_id): static
+    {
+        $this->account_id = $account_id;
+
+        return $this;
     }
 }
 

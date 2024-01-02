@@ -21,7 +21,9 @@ class RosterController extends AbstractController
         // Use the entity manager to retrieve data
         $repository = $entityManager->getRepository(RosterMember::class);
         $rosterMembers = $repository->findAll();
-
+        echo '<prE>';
+        //print_r($rosterMembers);
+        echo '</pre>';
         // ... rest of your controller logic
 
         return $this->render('roster/index.html.twig', [

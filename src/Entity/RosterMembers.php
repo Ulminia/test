@@ -24,6 +24,9 @@ class RosterMembers
     #[ORM\Column(length: 75)]
     private ?string $character_name = null;
 
+    #[ORM\Column]
+    private ?int $character_id = null;
+
     public function getId(): ?int
     {
         return $this->member_id;
@@ -73,6 +76,18 @@ class RosterMembers
     public function setCharacterName(string $character_name): static
     {
         $this->character_name = $character_name;
+
+        return $this;
+    }
+
+    public function getCharacterId(): ?int
+    {
+        return $this->character_id;
+    }
+
+    public function setCharacterId(int $character_id): static
+    {
+        $this->character_id = $character_id;
 
         return $this;
     }
