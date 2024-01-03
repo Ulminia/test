@@ -3,20 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\PlayersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: PlayersRepository::class)]
 class Players
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
-
     #[ORM\Column]
     #[ORM\JoinTable(name: 'roster_member')]
-    #[ORM\ManyToOne(inversedBy: 'players', targetEntity: RosterMember::class)]
-    #[ORM\JoinColumn(referencedColumnName:"member_id",name:"member_id")]
+    #[ORM\OneToMany(mappedBy: 'players',targetEntity: RosterMember::class)]
     private ?int $member_id = null;
 
     #[ORM\Column(length: 5)]
@@ -141,7 +139,7 @@ class Players
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->member_id;
     }
 
     public function getCharacterId(): ?RosterMembers

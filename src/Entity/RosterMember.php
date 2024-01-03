@@ -22,26 +22,26 @@ class RosterMember
     #[ORM\Column]
     private ?int $member_id = null;
 
+    private Collection $players;
     #[ORM\JoinTable(name: 'players')]
+    #[ORM\ManyToOne(targetEntity: Players::class, inversedBy: 'players')]
     #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
-    #[ORM\InverseJoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
-    #[ORM\ManyToOne(targetEntity: Players::class)]
-    private Collection $player;
 
     public function __construct()
     {
-        $this->player = new ArrayCollection();
+        $this->players = new ArrayCollection();
     }
 
     public function getplayer(): Collection
     {
-        return $this->player;
+        return $this->players;
     }
     /**
      * @ORM\Column(type="integer", name="guild_id")
      */
 	#[ORM\Column]
-      	private ?int $guildId = null;
+    private ?int $guildId = null;
+    private $player;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_key_href")
@@ -167,7 +167,7 @@ class RosterMember
     private ?string $region = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $account_id = null;
+    private ?int $accountId = null;
 
     // Getter methods
 
@@ -285,12 +285,12 @@ class RosterMember
     {
         return $this->active;
     }
-/*
+
     public function getAccountId(): ?int
     {
         return $this->accountId;
     }
-    */
+
 
     // Method to get all data as an array (for looping in the page)
 
@@ -319,7 +319,9 @@ class RosterMember
             'lastOnline' => $this->lastOnline,
             'lastHttpCode' => $this->lastHttpCode,
             'active' => $this->active,
-            //'accountId' => $this->accountId,
+            'player' => $this->players,
+            'players' => $this->getPlayerId(),
+            'accountId' => $this->accountId,
         ];
     }
 
@@ -342,9 +344,9 @@ class RosterMember
         return $this->player;
     }
 
-    public function setAccountId(?int $account_id): static
+    public function setAccountId(?int $accountId): static
     {
-        $this->account_id = $account_id;
+        $this->accountId = $accountId;
 
         return $this;
     }

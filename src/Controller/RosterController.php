@@ -20,9 +20,10 @@ class RosterController extends AbstractController
     {
         // Use the entity manager to retrieve data
         $repository = $entityManager->getRepository(RosterMember::class);
+       // $player = $repository->getPlayerId();
         $rosterMembers = $repository->findAll();
         echo '<prE>';
-        //print_r($rosterMembers);
+        print_r( $rosterMembers );
         echo '</pre>';
         // ... rest of your controller logic
 
