@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d11b035453bff71081f2ae7c8580987",
+    "content-hash": "469b0554a7ea2526178c35cfb1c0f3b5",
     "packages": [
         {
             "name": "ajardin/blizzard-sdk-bundle",

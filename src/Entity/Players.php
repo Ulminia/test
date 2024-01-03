@@ -15,6 +15,25 @@ class Players
     #[ORM\Column]
     private ?int $member_id = null;
 
+    #[ORM\OneToOne(targetEntity: RosterMember::class, inversedBy: 'player')]
+    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
+    private RosterMember|null $members = null;
+    private RosterMember|null $member = null;
+
+    public function getMember()
+    {
+        return $this->member;
+    }
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    public function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
+
     #[ORM\Column(length: 5)]
     private ?string $region = null;
 

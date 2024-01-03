@@ -23,7 +23,7 @@ class RosterController extends AbstractController
        // $player = $repository->getPlayerId();
         $rosterMembers = $repository->findAll();
         echo '<prE>';
-        print_r( $rosterMembers );
+        dump( $rosterMembers );
         echo '</pre>';
         // ... rest of your controller logic
 

@@ -22,15 +22,9 @@ class RosterMember
     #[ORM\Column]
     private ?int $member_id = null;
 
-    private $players;
-    #[ORM\OneToOne(targetEntity: Players::class)]
-    #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
+    #[ORM\OneToOne(targetEntity: Players::class, mappedBy: 'members')]
     private Players|null $player = null;
-
-    public function __construct()
-    {
-        $this->players = new ArrayCollection();
-    }
+    private Players|null $players = null;
 
     public function getPlayer()
     {
