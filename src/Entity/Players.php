@@ -13,8 +13,6 @@ class Players
 {
     #[ORM\Id]
     #[ORM\Column]
-    #[ORM\JoinTable(name: 'roster_member')]
-    #[ORM\OneToMany(mappedBy: 'players',targetEntity: RosterMember::class)]
     private ?int $member_id = null;
 
     #[ORM\Column(length: 5)]

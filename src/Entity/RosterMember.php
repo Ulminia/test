@@ -22,17 +22,21 @@ class RosterMember
     #[ORM\Column]
     private ?int $member_id = null;
 
-    private Collection $players;
-    #[ORM\JoinTable(name: 'players')]
-    #[ORM\ManyToOne(targetEntity: Players::class, inversedBy: 'players')]
+    private $players;
+    #[ORM\OneToOne(targetEntity: Players::class)]
     #[ORM\JoinColumn(name: 'member_id', referencedColumnName: 'member_id')]
+    private Players|null $player = null;
 
     public function __construct()
     {
         $this->players = new ArrayCollection();
     }
 
-    public function getplayer(): Collection
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+    public function getPlayers()
     {
         return $this->players;
     }
@@ -41,7 +45,6 @@ class RosterMember
      */
 	#[ORM\Column]
     private ?int $guildId = null;
-    private $player;
 
     /**
      * @ORM\Column(type="string", length=255, name="character_key_href")
@@ -339,7 +342,7 @@ class RosterMember
     /**
      * @return Collection<int, Player>
      */
-    public function getPlayerId(): Collection
+    public function getPlayerId()
     {
         return $this->player;
     }
