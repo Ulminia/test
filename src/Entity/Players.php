@@ -140,16 +140,9 @@ class Players
         return $this->member_id;
     }
 
-    public function getCharacterId(): ?RosterMembers
+    public function getCharacterId()
     {
         return $this->member_id;
-    }
-
-    public function setCharacterId(?RosterMembers $member_id): static
-    {
-        $this->member_id = $member_id;
-
-        return $this;
     }
 
     public function getRegion(): ?string
